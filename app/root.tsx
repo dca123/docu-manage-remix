@@ -1,6 +1,7 @@
 import { Links, LiveReload, Outlet } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 import styles from "./tailwind.css";
+import { Layout } from "./components/Layout";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 export default function App() {
@@ -12,7 +13,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <Layout>
+          <Outlet />
+        </Layout>
         <LiveReload />
       </body>
     </html>

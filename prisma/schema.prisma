@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Document {
+  id          String      @id @default(uuid())
+  serial      DateTime
+  periodicity Periodicity
+  licensee    Licensee    @relation(fields: [licenseeId], references: [id])
+  licenseeId  String
+  status      Status
+  uploadDate  DateTime    @default(now())
+}
+
+model Licensee {
+  id            String        @id @default(uuid())
+  name          String
+  incorporation Incorporation
+  documents     Document[]
+}
+
+enum Incorporation {
+  FOREIGN
+  LOCAL
+}
+
+enum Periodicity {
+  FORTNIGHTLY
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+}
+
+enum Status {
+  PENDING
+  IN_REVIEW
+  APPROVED
+  REJECTED
+}
