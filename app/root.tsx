@@ -6,7 +6,7 @@ import { Layout } from "./components/Layout";
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark">
       <head>
         <meta charSet="utf-8" />
         <title>Remix: So great, it's funny!</title>

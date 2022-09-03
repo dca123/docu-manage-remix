@@ -1441,6 +1441,11 @@
     "@types/node" "*"
     "@types/responselike" "*"
 
+"@types/capitalize@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/capitalize/-/capitalize-2.0.0.tgz#8efa550b70c7d05bd5a323d39ba762f3f058cdfb"
+  integrity sha512-Jxz08Zch+/J+R3DUcPGmXZ4hNzZImd/FXXij32ByTfclrCQr15+geQjV5teTyFQb3zYPi7O5pRv2/YsyDfRmjA==
+
 "@types/cookie@^0.4.0":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.4.1.tgz#bfd02c1f2224567676c1545199f87c3a861d878d"
@@ -2190,6 +2195,11 @@ caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
   version "1.0.30001383"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001383.tgz#aecf317ccd940690725ae3ae4f28293c5fb8050e"
   integrity sha512-swMpEoTp5vDoGBZsYZX7L7nXHe6dsHxi9o6/LKf/f0LukVtnrxly5GVb/fWdCDTqi/yw6Km6tiJ0pmBacm0gbg==
+
+capitalize@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/capitalize/-/capitalize-2.0.4.tgz#eed7f94c6699a318eeef6e68967fe139c764b866"
+  integrity sha512-wcSyiFqXRYyCoqu0o0ekXzJAKCLMkqWS5QWGlgTJFJKwRmI6pzcN2hBl5VPq9RzLW5Uf4FF/V/lcFfjCtVak2w==
 
 chalk@^2.0.0, chalk@^2.4.1:
   version "2.4.2"
