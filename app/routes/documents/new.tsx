@@ -1,4 +1,5 @@
-import { LoaderFunction, json } from "@remix-run/node";
+import type { LoaderFunction, ActionFunction } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import capitalize from "capitalize";
 import { db } from "~/utils/db.server";
@@ -21,6 +22,48 @@ export default function NewDocumentRoute() {
     </div>
   );
 }
+
+type ActionData = {
+  formError: string;
+};
+const badRequest = (data: ActionData) => json(data, { status: 400 });
+
+export const action: ActionFunction = async ({ request, context }) => {
+  const data = await request.formData();
+
+  const licenseeId = data.get("licenseeId");
+  const serial = data.get("serial");
+  const periodicity = data.get("periodicity");
+
+  if (
+    typeof licenseeId !== "string" ||
+    typeof serial !== "string" ||
+    typeof periodicity !== "string"
+  ) {
+    return badRequest({
+      formError: "Form not submitted correctly",
+    });
+  }
+
+  const fields = {
+    licenseeId,
+    serial: new Date(serial),
+    periodicity: periodicity as Periodicity,
+  };
+
+  const document = await db.document.create({
+    data: { ...fields, status: "PENDING" },
+  });
+
+  console.log({
+    licenseeId,
+    serial,
+    periodicity,
+    document,
+  });
+
+  return redirect("/documents");
+};
 
 const PeriodInput = () => {
   return (
@@ -48,7 +91,8 @@ const PeriodRadioOption = ({
       <label className="label cursor-pointer space-x-2">
         <input
           type="radio"
-          name="radio-6"
+          name="periodicity"
+          value={name}
           className="radio checked:bg-red-500"
         />
         <span className="label-text">{displayLabel}</span>
@@ -71,7 +115,7 @@ const LicenseeInput = () => {
       <label className="label">
         <span className="label-text">Licensee</span>
       </label>
-      <select className="select select-bordered">
+      <select className="select select-bordered" name="licenseeId">
         {data.map((licensee) => (
           <option key={licensee.id} value={licensee.id}>
             {licensee.name}

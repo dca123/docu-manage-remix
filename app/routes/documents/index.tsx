@@ -11,6 +11,9 @@ const getLoaderData = () =>
     include: {
       licensee: true,
     },
+    orderBy: {
+      uploadDate: "desc",
+    },
   });
 
 export const loader: LoaderFunction = async () => {
