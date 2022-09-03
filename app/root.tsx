@@ -9,7 +9,7 @@ export default function App() {
     <html lang="en" data-theme="dark">
       <head>
         <meta charSet="utf-8" />
-        <title>Remix: So great, it's funny!</title>
+        <title>DocuManage x Remix: So great, it's funny!</title>
         <Links />
       </head>
       <body>
