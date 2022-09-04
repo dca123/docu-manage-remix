@@ -1,7 +1,7 @@
 import type { ActionFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { TextInput } from "~/components/form/TextInput";
-import { login } from "~/utils/session.server";
+import { createSession, login } from "~/utils/session.server";
 
 const LoginRoute = () => {
   return (
@@ -47,9 +47,11 @@ export const action: ActionFunction = async ({ request }) => {
   const fields = { email, password };
   const user = await login({ email, password });
 
-  console.log({ user });
+  if (!user) {
+    return badRequest({ formError: "Username or Password is invalid" });
+  }
 
-  return badRequest({ formError: "Not Implemented" });
+  return createSession(user.id);
 };
 
 export default LoginRoute;

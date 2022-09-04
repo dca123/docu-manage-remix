@@ -1,4 +1,5 @@
-import { json, LoaderFunction, SerializeFrom } from "@remix-run/node";
+import type { LoaderFunction, SerializeFrom } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { db } from "~/utils/db.server";
 

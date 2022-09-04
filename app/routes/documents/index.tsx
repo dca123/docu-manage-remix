@@ -10,6 +10,7 @@ const getLoaderData = () =>
   db.document.findMany({
     include: {
       licensee: true,
+      user: true,
     },
     orderBy: {
       uploadDate: "desc",
@@ -33,6 +34,7 @@ const DocumentsTable = ({
           <th>Serial</th>
           <th>Status</th>
           <th>Upload Date</th>
+          <th>Upload By</th>
         </tr>
       </thead>
       <tbody>
@@ -42,6 +44,7 @@ const DocumentsTable = ({
             <td>{format(new Date(document.serial), "yyyy-MM-dd")}</td>
             <td>{document.status}</td>
             <td>{format(new Date(document.uploadDate), "yyyy-MM-dd")}</td>
+            <td>{document.user.email}</td>
           </tr>
         ))}
       </tbody>

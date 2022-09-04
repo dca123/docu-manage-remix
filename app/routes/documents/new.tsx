@@ -5,6 +5,7 @@ import capitalize from "capitalize";
 import { db } from "~/utils/db.server";
 import { Periodicity } from "@prisma/client";
 import { TextInput } from "~/components/form/TextInput";
+import { requireUserId } from "~/utils/session.server";
 
 export default function NewDocumentRoute() {
   return (
@@ -52,8 +53,10 @@ export const action: ActionFunction = async ({ request, context }) => {
     periodicity: periodicity as Periodicity,
   };
 
+  const userId = await requireUserId(request);
+
   const document = await db.document.create({
-    data: { ...fields, status: "PENDING" },
+    data: { ...fields, status: "PENDING", userId: userId },
   });
 
   console.log({
