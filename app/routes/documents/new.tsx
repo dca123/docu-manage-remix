@@ -4,6 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 import capitalize from "capitalize";
 import { db } from "~/utils/db.server";
 import { Periodicity } from "@prisma/client";
+import { TextInput } from "~/components/form/TextInput";
 
 export default function NewDocumentRoute() {
   return (
@@ -122,23 +123,6 @@ const LicenseeInput = () => {
           </option>
         ))}
       </select>
-    </div>
-  );
-};
-
-const TextInput = ({ label, name }: { label?: string; name: string }) => {
-  const displayLabel = label ?? capitalize(name);
-  return (
-    <div className="form-control w-full max-w-xs">
-      <label className="label" htmlFor={name}>
-        <span className="label-text">{displayLabel}</span>
-      </label>
-      <input
-        name={name}
-        id={name}
-        type="text"
-        className="input input-bordered w-full max-w-xs"
-      />
     </div>
   );
 };
