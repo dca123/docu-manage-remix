@@ -1,4 +1,4 @@
-import { Links, LiveReload, Outlet } from "@remix-run/react";
+import { Links, LiveReload, Outlet, Scripts } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 import styles from "./tailwind.css";
 import { Layout } from "./components/Layout";
@@ -16,6 +16,7 @@ export default function App() {
         <Layout>
           <Outlet />
         </Layout>
+        <Scripts />
         <LiveReload />
       </body>
     </html>
