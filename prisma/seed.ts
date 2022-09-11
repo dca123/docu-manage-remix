@@ -23,6 +23,9 @@ async function main() {
     users.push(user);
   }
 
+  const devUser = await createUser("devinda@test.com");
+  users.push(devUser);
+
   for (let i = 0; i < 10; i++) {
     await createDocument(
       faker.helpers.arrayElement(licensees),
@@ -40,10 +43,10 @@ async function createLicensee() {
   });
 }
 
-async function createUser() {
+async function createUser(email?: string) {
   return await prisma.user.create({
     data: {
-      email: faker.internet.email(),
+      email: email ?? faker.internet.email(),
       passwordHash:
         "$2a$12$WgNM9MfgWqay.R3NeoAiiucqr9pEwjGTZ6NiiXr7/c7/QhcdnzYK.",
     },
